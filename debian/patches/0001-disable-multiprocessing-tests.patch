@@ -1,0 +1,27 @@
+From: Boyuan Yang <byang@debian.org>
+Date: Wed, 8 Jun 2022 22:25:37 -0400
+Subject: disable multiprocessing tests
+
+ We do not always have permissions to run multiprocessing tests.
+---
+ tests/__init__.py | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/tests/__init__.py b/tests/__init__.py
+index cd29f80..d829031 100644
+--- a/tests/__init__.py
++++ b/tests/__init__.py
+@@ -6,7 +6,6 @@ from . import test_fuzz
+ from . import test_compat
+ from . import test_unicode
+ from . import test_tidy
+-from . import test_multiprocessing
+ from iniparse import config
+ from iniparse import ini
+ 
+@@ -22,5 +21,4 @@ class Suite(unittest.TestSuite):
+                 test_compat.Suite(),
+                 test_unicode.Suite(),
+                 test_tidy.Suite(),
+-                test_multiprocessing.Suite(),
+         ])

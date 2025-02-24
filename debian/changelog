@@ -1,5 +1,96 @@
-template-repository (1.0-1) unstable; urgency=medium
+python-iniparse (0.5-1) unstable; urgency=medium
 
-  * Initial release
+  * Team upload.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Database, Repository, Repository-
+    Browse.
+  * Update maintainer email for merge of DPMT and PAPT.
+  * Set upstream metadata fields: Bug-Submit.
+
+  [ Boyuan Yang ]
+  * New upstream release.
+  * debian/control: Bump Standards-Version to 4.6.1.
+  * debian/control: Bump debhelper compat to v13.
+  * debian/patches: Refresh patches.
+    + Drop python3-compat patch (merged).
+    + Backport upstream patch for python3.11 compatibility.
+
+ -- Boyuan Yang <byang@debian.org>  Wed, 08 Jun 2022 22:29:52 -0400
+
+python-iniparse (0.4-3) unstable; urgency=medium
+
+  * Maintain under DPMT.
+  * Fix the copyright file.
+  * Take over some files shipped in python-iniparse (Closes: #947263).
+
+ -- Andrej Shadura <andrewsh@debian.org>  Sun, 29 Dec 2019 10:43:25 +0100
+
+python-iniparse (0.4-2.3) unstable; urgency=medium
+
+  * Non-maintainer upload.
+
+  [ Stuart Prescott ]
+  * Remove Python 2 module package (Closes: #937834).
+  * Update Standards-Version to 4.4.1 (no changes required).
+  * Update to debhelper-compat (= 12).
+  * Update URLs for upstream.
+  * Add autopkgtest test.
+
+  [ Ondřej Nový ]
+  * d/control: Remove ancient X-Python-Version field
+  * d/control: Deprecating priority extra as per policy 4.0.1
+  * d/control: Set Vcs-* to salsa.debian.org
+
+ -- Stuart Prescott <stuart@debian.org>  Sun, 22 Dec 2019 12:44:30 +1100
+
+python-iniparse (0.4-2.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Add Python 3 support.
+  * Use pybuild.
+
+ -- Andrew Shadura <andrewsh@debian.org>  Fri, 21 Aug 2015 21:06:04 +0200
+
+python-iniparse (0.4-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Rebuild to add Python 2.7 support
+
+ -- Piotr Ożarowski <piotr@debian.org>  Sun, 08 May 2011 16:46:01 +0200
+
+python-iniparse (0.4-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * Fix typo in package description (Closes: #612076).
+  * Update Standards-Version to 3.9.1.
+  * Drop cdbs and use debhelper 8 and dh_python2.
+
+ -- Ludovico Cavedon <cavedon@debian.org>  Fri, 01 Apr 2011 20:54:07 -0700
+
+python-iniparse (0.4-1) experimental; urgency=low
+
+  * New Upstream release (Closes: #585828).
+  * Update watch file.
+  * Uploading to experimental because of API change.
+  * Add description of API change to NEWS file.
+  * Add HTML documentation.
+
+ -- Ludovico Cavedon <cavedon@debian.org>  Sun, 13 Jun 2010 01:03:08 -0700
+
+python-iniparse (0.3.2-1) unstable; urgency=low
+
+  * New Upstream version.
+  * Remove DM-Upload-Allowed and change maintainer email.
+  * Convert to source format 3.0 (quilt).
+  * Update Standards-Version to 3.8.4.
+  * Build-Depend on python rather than python-all.
+
+ -- Ludovico Cavedon <cavedon@debian.org>  Sun, 18 Apr 2010 23:48:47 -0700
+
+python-iniparse (0.3.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #506011)
+  * Packaging based on Joao Eriberto Mota Filho work.
+
+ -- Ludovico Cavedon <ludovico.cavedon@gmail.com>  Sun, 25 Oct 2009 23:38:47 -0700

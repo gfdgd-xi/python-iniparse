@@ -1,0 +1,5 @@
+Tests: python3-iniparse
+Restrictions: allow-stderr
+Depends:
+ python3-all,
+ python3-iniparse,

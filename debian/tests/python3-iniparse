@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+set -u
+
+cp -r tests debian/cfgparser.1 runtests.py "$AUTOPKGTEST_TMP"
+cd "$AUTOPKGTEST_TMP"
+
+export PYTHONWARNINGS=d
+
+for py in $(py3versions -s); do
+  $py ./runtests.py
+done
