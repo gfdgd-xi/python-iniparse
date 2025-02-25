@@ -1,4 +1,16 @@
 #!/usr/bin/make -f
 
+export PYBUILD_NAME=iniparse
+
 %:
-	dh $@
+	dh $@ --buildsystem=pybuild
+
+execute_after_dh_auto_install:
+	rm -fr debian/python*-iniparse/usr/share/doc/iniparse-*
+
+override_dh_auto_test:
+	PYBUILD_SYSTEM=custom \
+	  PYBUILD_TEST_ARGS="cd {build_dir}; python{version} ./runtests.py" \
+	  dh_auto_test --buildsystem=pybuild
+
+.PHONY: execute_after_dh_auto_install override_dh_auto_test

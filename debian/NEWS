@@ -1,0 +1,12 @@
+python-iniparse (0.4-1) experimental; urgency=low
+
+  From [1]:
+  * Square bracket syntax will auto-add missing attributes now.  Earlier
+  it used to raise a KeyError exception.  If you were relying on the
+  exception to check whether an attribute was defined, you need to
+  change your code to use the 'in' operator.
+
+  [1] http://groups.google.com/group/iniparse-discuss/browse_thread/thread/9ee8b729dda89191
+
+ -- Ludovico Cavedon <cavedon@debian.org>  Sat, 12 Jun 2010 16:58:49 -0700
+

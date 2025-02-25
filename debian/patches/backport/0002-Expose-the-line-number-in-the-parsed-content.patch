@@ -1,0 +1,73 @@
+From: Luigi Toscano <luigi.toscano@tiscali.it>
+Date: Mon, 18 Apr 2022 19:41:18 +0200
+Subject: Expose the line number in the parsed content
+
+The information about the current line number is already available,
+just expose it.
+---
+ iniparse/ini.py   |  9 ++++++++-
+ tests/test_ini.py | 13 +++++++++----
+ 2 files changed, 17 insertions(+), 5 deletions(-)
+
+diff --git a/iniparse/ini.py b/iniparse/ini.py
+index 998fb80..460d55e 100644
+--- a/iniparse/ini.py
++++ b/iniparse/ini.py
+@@ -282,10 +282,15 @@ class LineContainer(object):
+             else:
+                 self.add(EmptyLine())
+ 
++    def get_line_number(self):
++       return self.contents[0].line_number if self.contents else None
++
+     name = property(get_name, set_name)
+ 
+     value = property(get_value, set_value)
+ 
++    line_number = property(get_line_number)
++
+     def __str__(self):
+         s = [x.__str__() for x in self.contents]
+         return '\n'.join(s)
+@@ -568,7 +573,6 @@ class INIConfig(config.ConfigNamespace):
+ 
+             line_obj = self._parse(line)
+             line_count += 1
+-
+             if not cur_section and not isinstance(line_obj, (CommentLine, EmptyLine, SectionLine)):
+                 if self._parse_exc:
+                     raise MissingSectionHeaderError(fname, line_count, line)
+@@ -644,6 +648,9 @@ class INIConfig(config.ConfigNamespace):
+                 if isinstance(line_obj, EmptyLine):
+                     pending_empty_lines = True
+ 
++            if line_obj:
++                line_obj.line_number = line_count
++
+         self._data.extend(pending_lines)
+         if line and line[-1] == '\n':
+             self._data.add(EmptyLine())
+diff --git a/tests/test_ini.py b/tests/test_ini.py
+index 5b53e89..21b73b2 100644
+--- a/tests/test_ini.py
++++ b/tests/test_ini.py
+@@ -201,10 +201,15 @@ but = also me
+     def test_basic(self):
+         sio = StringIO(self.s1)
+         p = ini.INIConfig(sio)
+-        self.assertEqual(str(p), self.s1)
+-        self.assertEqual(p._data.find('section1').find('but').value, 'also me')
+-        self.assertEqual(p._data.find('section1').find('help').value, 'yourself')
+-        self.assertEqual(p._data.find('section2').find('just').value, 'kidding')
++        section1_but = p._data.find('section1').find('but')
++        self.assertEqual(section1_but.value, 'also me')
++        self.assertEqual(section1_but.line_number, 14)
++        section1_help = p._data.find('section1').find('help')
++        self.assertEqual(section1_help.value, 'yourself')
++        self.assertEqual(section1_help.line_number, 13)
++        section2_just = p._data.find('section2').find('just')
++        self.assertEqual(section2_just.value, 'kidding')
++        self.assertEqual(section2_just.line_number, 10)
+ 
+         itr = p._data.finditer('section1')
+         v = next(itr)

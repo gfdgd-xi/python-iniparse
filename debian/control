@@ -1,15 +1,42 @@
-Source: template-repository
-Section: unknown
+Source: python-iniparse
+Section: python
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders: Ludovico Cavedon <cavedon@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               dh-sequence-python3,
+               python3-all,
+               python3-setuptools,
+               python3-six
+Standards-Version: 4.6.1
+Homepage: https://github.com/candlepin/python-iniparse
+Vcs-Git: https://salsa.debian.org/debian/python-iniparse.git
+Vcs-Browser: https://salsa.debian.org/debian/python-iniparse
+Rules-Requires-Root: no
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: python3-iniparse
+Architecture: all
+Depends: ${misc:Depends}, ${python3:Depends}, python3-six
+Replaces: python-iniparse (<< 0.4-2.3)
+Description: access and modify configuration data in INI files (Python 3)
+ iniparse is a INI parser for Python which is:
+ .
+  * Compatible with ConfigParser: Backward compatible implementations of
+    ConfigParser, RawConfigParser, and SafeConfigParser are included that are
+    API-compatible with the Python standard library. They pass all the unit
+    tests in Python-2.4.4.
+ .
+  * Preserves structure of INI files: Order of sections & options, indentation,
+    comments, and blank lines are preserved as far as possible when data is
+    updated.
+ .
+  * More convenient: Values can be accessed using dotted notation
+    (cfg.user.name), or using container syntax (cfg['user']['name']).
+ .
+ It is very useful for config files that are updated both by users and by
+ programs, since it is very disorienting for a user to have her config file
+ completely rearranged whenever a program changes it. iniparse also allows
+ making the order of entries in a config file significant, which is desirable
+ in applications like image galleries.
+ .
+ This is a Python 3 version of the package
